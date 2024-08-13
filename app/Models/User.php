@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Support\Facades\URL;
+use App\Notifications\ResetPasswordNotification;
+use App\Notifications\PasswordResetNotification;
 
 class User extends Authenticatable implements CanResetPassword 
 {
@@ -44,5 +47,14 @@ class User extends Authenticatable implements CanResetPassword
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /////////////////
+
+    public function sendPasswordResetNotification($token): void
+    {
+        $url = URL::to('/reset-password/' . $token);
+
+        $this->notify(new PasswordResetNotification($url));
     }
 }
