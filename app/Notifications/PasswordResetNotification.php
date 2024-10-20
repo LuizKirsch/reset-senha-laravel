@@ -38,7 +38,7 @@ class PasswordResetNotification extends Notification
     {
         return (new MailMessage)
                     ->markdown('vendor.notifications.email')
-                    ->subject('Noticficação de troca de senha')
+                    ->subject('Notificação de troca de senha')
                     ->greeting('Olá!')
                     ->salutation('Atenciosamente, Equipe ' . config('app.name'))
                     ->from('teste@teste.com')
