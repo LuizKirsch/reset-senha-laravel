@@ -21,9 +21,9 @@
                 </ul>
             </div>
         @endif
-        @php
+        {{-- @php
             dump(session());
-        @endphp
+        @endphp --}}
 
         <form method="POST" action="{{route('password.email')}}">
             @csrf
